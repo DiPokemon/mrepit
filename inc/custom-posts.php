@@ -120,7 +120,7 @@ function register_custom_post_types() {
 /* КАСТОМНЫЕ ТАКСОНОМИИ */
 add_action('init', 'register_teacher_subjects_taxonomy');
 function register_teacher_subjects_taxonomy() {
-    register_taxonomy('teacher_subjects', 'teacher', [
+    register_taxonomy('teacher_subjects', ['teacher', 'lesson'], [
         'labels' => [
             'name' => 'Предметы',
             'singular_name' => 'Предмет',

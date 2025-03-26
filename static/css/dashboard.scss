@@ -1,0 +1,104 @@
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 80vh;
+    gap: 20px;
+
+    .sidebar {
+        width: 220px;
+        background: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 10px;
+
+                a {
+                    display: block;
+                    padding: 10px;
+                    background: #fff;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    color: #333;
+
+                    &.active {
+                        background: #0073aa;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .content-area {
+        flex-grow: 1;
+
+        .dashboard-section {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+
+            .profile-info-wrapper{
+                display: flex;
+                gap: 50px;
+
+                .profile-info-column{
+                    &:first-of-type{
+                        width: 300px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        img{
+                            width: 300px;
+                            height: 300px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .subjects{
+                        display: flex;
+                        gap: 5px;
+
+                        span{
+                            padding: 5px 10px;
+                            border-radius: 10px;
+                            border: 1px solid #000;
+                        }
+                    }
+
+                    .experience{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        .workplace-list{
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+                }
+
+
+                
+                    
+
+                
+
+
+            }
+        }
+    }
+}
+
+
+
+
+
+

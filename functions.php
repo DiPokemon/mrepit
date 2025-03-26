@@ -184,10 +184,16 @@ function crb_load() {
 }
 
 /* ПОДКЛЮЧЕНИЕ ДОПОЛНИТЕЛЬНЫХ ФАЙЛОВ */
+
 require_once (get_template_directory() . '/inc/custom-posts.php'); //Кастомные типы записей
 require_once (get_template_directory() . '/inc/custom-fields/post-options.php'); //Кастомные поля для записей
 require_once (get_template_directory() . '/inc/user-roles.php'); //Кастомные пользовательские роли
 require_once (get_template_directory() . '/inc/custom-fields/user-options.php'); //Кастомные поля для пользователей
+
+require_once (get_template_directory() . '/inc/dashboards-routing.php'); //Кастомные поля для пользователей
+
+require_once( get_template_directory().'/inc/styles-load.php' );
+require_once( get_template_directory().'/inc/scripts-load.php' );
 
 
 
@@ -198,3 +204,117 @@ require_once (get_template_directory() . '/inc/custom-fields/user-options.php');
 //         exit;
 //     }
 // }
+
+
+
+
+
+
+
+
+
+
+/* КАСТОМНЫЕ ПОДРУЧНЫЕ ФУНКЦИИ */
+function calculate_total_experience($experience) {
+    $total_months = 0;
+
+    foreach ($experience as $job) {
+        if (empty($job['from_date'])) continue;
+
+        $from = DateTime::createFromFormat('Y-m-d', $job['from_date']);
+        $to = !empty($job['to_date']) 
+            ? DateTime::createFromFormat('Y-m-d', $job['to_date']) 
+            : new DateTime();
+
+        if (!$from || !$to || $from > $to) continue;
+
+        $diff = $from->diff($to);
+        $total_months += ($diff->y * 12) + $diff->m;
+    }
+
+    $years = floor($total_months / 12);
+    $months = $total_months % 12;
+
+    return [
+        'years' => $years,
+        'months' => $months,
+        'text' => format_experience_text($years, $months),
+    ];
+}
+
+function format_experience_text($years, $months) {
+    $parts = [];
+
+    if ($years > 0) {
+        $year_word = get_russian_plural($years, ['год', 'года', 'лет']);
+        $parts[] = "$years $year_word";
+    }
+
+    if ($months > 0) {
+        $month_word = get_russian_plural($months, ['месяц', 'месяца', 'месяцев']);
+        $parts[] = "$months $month_word";
+    }
+
+    return implode(' ', $parts);
+}
+
+function get_russian_plural($number, $forms) {
+    $number = abs($number) % 100;
+    $n1 = $number % 10;
+
+    if ($number > 10 && $number < 20) return $forms[2];
+    if ($n1 > 1 && $n1 < 5) return $forms[1];
+    if ($n1 == 1) return $forms[0];
+
+    return $forms[2];
+}
+
+
+if ( ! function_exists( 'get_full_name' ) ) {
+    /**
+     * Get full name from last, first, and middle parts.
+     *
+     * @param string $last   Last name.
+     * @param string $first  First name.
+     * @param string $middle Middle name.
+     *
+     * @return string Full name in format: "Last First Middle"
+     */
+    function get_full_name( $last = '', $first = '', $middle = '' ) {
+        $parts = [];
+
+        if ( ! empty( $last ) ) {
+            $parts[] = $last;
+        }
+
+        if ( ! empty( $first ) ) {
+            $parts[] = $first;
+        }
+
+        if ( ! empty( $middle ) ) {
+            $parts[] = $middle;
+        }
+
+        return implode( ' ', $parts );
+    }
+}
+
+function calculate_age_in_years_and_months($birthdate) {
+    if (empty($birthdate)) return false;
+
+    $birth = DateTime::createFromFormat('Y-m-d', $birthdate);
+    $today = new DateTime();
+
+    if (!$birth) return false;
+
+    $interval = $birth->diff($today);
+
+    return [
+        'years' => $interval->y,
+        'months' => $interval->m,
+    ];
+}
+
+
+
+

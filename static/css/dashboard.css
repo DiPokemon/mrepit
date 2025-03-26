@@ -1,0 +1,97 @@
+.dashboard-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 80vh;
+  gap: 20px;
+}
+.dashboard-wrapper .sidebar {
+  width: 220px;
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+}
+.dashboard-wrapper .sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.dashboard-wrapper .sidebar ul li {
+  margin-bottom: 10px;
+}
+.dashboard-wrapper .sidebar ul li a {
+  display: block;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+}
+.dashboard-wrapper .sidebar ul li a.active {
+  background: #0073aa;
+  color: #fff;
+}
+.dashboard-wrapper .content-area {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.dashboard-wrapper .content-area .dashboard-section {
+  display: none;
+}
+.dashboard-wrapper .content-area .dashboard-section.active {
+  display: block;
+}
+.dashboard-wrapper .content-area .dashboard-section .profile-info-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 50px;
+}
+.dashboard-wrapper .content-area .dashboard-section .profile-info-wrapper .profile-info-column:first-of-type {
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+.dashboard-wrapper .content-area .dashboard-section .profile-info-wrapper .profile-info-column:first-of-type img {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.dashboard-wrapper .content-area .dashboard-section .profile-info-wrapper .profile-info-column .subjects {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+}
+.dashboard-wrapper .content-area .dashboard-section .profile-info-wrapper .profile-info-column .subjects span {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+.dashboard-wrapper .content-area .dashboard-section .profile-info-wrapper .profile-info-column .experience {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+.dashboard-wrapper .content-area .dashboard-section .profile-info-wrapper .profile-info-column .experience .workplace-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}/*# sourceMappingURL=dashboard.css.map */
